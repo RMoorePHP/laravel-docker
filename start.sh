@@ -7,7 +7,7 @@
 
     if [ "$env" != "local" ]; then
         echo "Caching configuration..."
-        # (cd /app && php artisan config:cache && php artisan route:cache && php artisan view:cache)
+        (cd /app && php artisan config:cache && php artisan route:cache && php artisan view:cache)
     fi
 
     if [ "$role" = "php" ]; then
@@ -18,6 +18,7 @@
 
     elif [ "$role" = "app" ]; then
         rsyslogd
+        echo "Running cron"
         exec cron -f -L15
         exit 1
 
