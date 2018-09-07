@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y software-properties-common curl inetuti
     php${PHP_VERSION}-fpm \
     php${PHP_VERSION}-curl \
     php${PHP_VERSION}-cli \
+    php${PHP_VERSION}-dev \
     php${PHP_VERSION}-intl \
     php${PHP_VERSION}-json \
     php${PHP_VERSION}-mysql \
@@ -44,6 +45,8 @@ RUN apt-get update && apt-get install -y software-properties-common curl inetuti
     sed -i 's#.*variables_order.*#variables_order=EGPCS#g' /etc/php/${PHP_VERSION}/fpm/php.ini && \
     sed -i 's#.*date.timezone.*#date.timezone=UTC#g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
     sed -i 's#.*clear_env.*#clear_env=no#g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+
+RUN pecl channel-update pecl.php.net && pecl install xdebug-2.6.1
 
 # Copy PHP-FPM service script
 COPY start.sh /etc/services.d/php/run
