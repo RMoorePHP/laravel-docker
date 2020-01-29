@@ -8,7 +8,7 @@ CMD []
 
 # Disable frontend dialogs
 ENV DEBIAN_FRONTEND noninteractive
-ENV PHP_VERSION 7.2
+ENV PHP_VERSION 7.3
 ENV FPM_PORT 9000
 # Add ppa, curl and syslogd
 RUN apt-get update && apt-get install -y software-properties-common curl inetutils-syslogd && \
@@ -46,7 +46,7 @@ RUN apt-get update && apt-get install -y software-properties-common curl inetuti
     sed -i 's#.*date.timezone.*#date.timezone=UTC#g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
     sed -i 's#.*clear_env.*#clear_env=no#g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
-RUN pecl channel-update pecl.php.net && pecl install xdebug-2.6.1
+# RUN pecl channel-update pecl.php.net && pecl install xdebug-2.6.1
 
 # Copy PHP-FPM service script
 COPY start.sh /etc/services.d/php/run
