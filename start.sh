@@ -4,7 +4,7 @@ set -e;
 role=${CONTAINER_ROLE:-app}
 env=${APP_ENV:-production}
 
-if [ "$env" != "local" ]; then
+if [ "$env" != "local" && -f /app/artisan ]; then
     echo "Caching configuration..."
     (cd /app && php artisan config:cache && php artisan route:cache && php artisan view:cache)
 fi
