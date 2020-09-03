@@ -8,7 +8,7 @@ CMD []
 
 # Disable frontend dialogs
 ENV DEBIAN_FRONTEND noninteractive
-ENV PHP_VERSION 7.3
+ENV PHP_VERSION 7.4
 ENV FPM_PORT 9000
 # Add ppa, curl and syslogd
 RUN apt-get update && apt-get install -y software-properties-common curl inetutils-syslogd && \
